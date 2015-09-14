@@ -60,6 +60,17 @@
       var stopDetection = 0;
       $(document).keydown(function(e){
 		
+	  
+	 //On le tourne à droite
+		  function Rotate(d) {
+					$("#pika").css({
+						  '-moz-transform':'rotate('+d+'deg)',
+						  '-webkit-transform':'rotate('+d+'deg)',
+						  '-o-transform':'rotate('+d+'deg)',
+						  '-ms-transform':'rotate('+d+'deg)',
+						  'transform': 'rotate('+d+'deg)'
+					 }); 
+				} //Fin de la fonction Rotate	  
 		  
 	  //DROITE	  
       if (e.which == 39) // Vers la droite
@@ -68,18 +79,7 @@
 		  // avec 700px de largeur c'est 490px
           if (posX < 755){
             $('#pika').css('left', posX+30);
-		  
-		  //On le tourne à droite
-		  function RotateRight(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 }); 
-				} //Fin de la fonction RotateRight
-		  RotateRight(180);
+		  Rotate(180);
         }
 	  }
 		
@@ -90,17 +90,8 @@
 		  // avec 700px de largeur c'est 40px
           if (posX > 80){
             $('#pika').css('left', posX-30);
-			//On le laisse à sa position d'origine	
-			  function RotateLeft(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-				} //Fin de la fonction RotatLeft	
-			  RotateLeft(0);
+			//On le laisse à sa position d'origine
+			  Rotate(0);
         }
 		}
 		
@@ -111,17 +102,7 @@
 		  // avec 700px de largeur c'est 300px
           if (posY < 300) {
             $('#pika').css('top', posY+30);
-			//On le tourne en bas	
-			  function RotateDown(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-				} //Fin de la fonction RotateDown	
-			  RotateDown(240);
+			  Rotate(240);
         }   
 		}
 		
@@ -133,16 +114,7 @@
           if (posY > 20) {
             $('#pika').css('top', posY-30);
 		      //On le monte	
-			  function RotateUp(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-				} //Fin de la fonction RotateUp	
-			  RotateUp(90);
+			  Rotate(90);
         } 
 		}
 		  
@@ -153,17 +125,8 @@
           posY = parseInt($('#pika').css('top'));
           if ((posY > 20) && (posX > 20)) {
             $('#pika').css('left', posX-30).css('top', posY-30);
-			//On le monte et à gauche	
-			  function RotateUpLeft(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-				} //Fin de la fonction RotateUpLeft	
-			  RotateUpLeft(130);
+			//On le monte et à gauche
+			  Rotate(130);
 		  }
         }     
 		  
@@ -174,17 +137,8 @@
           posY = parseInt($('#pika').css('top'));
           if ((posY > 20) && (posX < 470)){
             $('#pika').css('left', posX+30).css('top', posY-30);
-			//On le monte et à droite	
-			  function RotateUpRight(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-				} //Fin de la fonction RotateUpRight
-			  RotateUpRight(50);	
+			//On le monte et à droite
+			  Rotate(50);	
         }    
 		}
 		  
@@ -196,17 +150,8 @@
           if ((posX > 20) && (posY < 230)){
             $('#pika').css('left', posX-30).css('top', posY+30);
 			$('#pika').css('left', posX+30).css('top', posY-30);
-			//Bas et la gauche	
-			  function RotateDownLeft(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-			  RotateDownLeft(390);
-				} //Fin de la fonction RotateDownLeft
+			//Bas et la gauche
+			  Rotate(390);
         }   
 		}
 		  
@@ -218,18 +163,10 @@
           if ((posY < 230) && (posX < 470)){
             $('#pika').css('left', posX+30).css('top', posY+30);
 		    //Bas et la droite
-			  function RotateDownRight(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 });  
-				} //Fin de la fonction RotateDownRight
-			  RotateDownRight(300);	
+			  Rotate(300);	
         }
 		}
+		
       }); // FIN DU MOUVEMENT DU PERSONNAGE
 		
 
