@@ -53,22 +53,23 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	
   <script>
-	  
+	
 	//huit blocs de code consacrés au traitement des huit touches du pavé numérique. 
     $(function() {
 		
       var stopDetection = 0;
       $(document).keydown(function(e){
+		
 		  
+	  //DROITE	  
       if (e.which == 39) // Vers la droite
       {
         posX = parseInt($('#pika').css('left'));	
 		  // avec 700px de largeur c'est 490px
-          if (posX < 755)
+          if (posX < 755){
             $('#pika').css('left', posX+30);
 		  
 		  //On le tourne à droite
-		  RotateRight(180);
 		  function RotateRight(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -78,16 +79,18 @@
 						  'transform': 'rotate('+d+'deg)'
 					 }); 
 				} //Fin de la fonction RotateRight
+		  RotateRight(180);
         }
-		  
+	  }
+		
+		// GAUCHE 
         if (e.which == 37) // Vers la gauche
         {
           posX = parseInt($('#pika').css('left'));
 		  // avec 700px de largeur c'est 40px
-          if (posX > 80)
+          if (posX > 80){
             $('#pika').css('left', posX-30);
-			//On le laisse à sa position d'origine
-			  RotateLeft(0);	
+			//On le laisse à sa position d'origine	
 			  function RotateLeft(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -97,16 +100,18 @@
 						  'transform': 'rotate('+d+'deg)'
 					 });  
 				} //Fin de la fonction RotatLeft	
+			  RotateLeft(0);
         }
-		  
+		}
+		
+		// BAS  
         if (e.which == 40) // Vers le bas
         {
           posY = parseInt($('#pika').css('top'));
 		  // avec 700px de largeur c'est 300px
-          if (posY < 300)
+          if (posY < 300) {
             $('#pika').css('top', posY+30);
-			//On le tourne en bas
-			  RotateDown(240);	
+			//On le tourne en bas	
 			  function RotateDown(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -116,16 +121,18 @@
 						  'transform': 'rotate('+d+'deg)'
 					 });  
 				} //Fin de la fonction RotateDown	
-        }     
-		  
+			  RotateDown(240);
+        }   
+		}
+		
+		// HAUT  
         if (e.which == 38) // Vers le haut
         {
           posY = parseInt($('#pika').css('top'));
 		  // avec 700px de largeur c'est 20px
-          if (posY > 20)
+          if (posY > 20) {
             $('#pika').css('top', posY-30);
-		      //On le monte
-			  RotateUp(90);	
+		      //On le monte	
 			  function RotateUp(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -135,15 +142,18 @@
 						  'transform': 'rotate('+d+'deg)'
 					 });  
 				} //Fin de la fonction RotateUp	
+			  RotateUp(90);
         } 
+		}
+		  
+		// HAUT ET GAUCHE
         if (e.which == 36) // Vers le haut et la gauche
         {
           posX = parseInt($('#pika').css('left'));
           posY = parseInt($('#pika').css('top'));
-          if ((posY > 20) && (posX > 20))
+          if ((posY > 20) && (posX > 20)) {
             $('#pika').css('left', posX-30).css('top', posY-30);
-			//On le monte et à gauche
-			  RotateUpLeft(130);	
+			//On le monte et à gauche	
 			  function RotateUpLeft(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -153,16 +163,18 @@
 						  'transform': 'rotate('+d+'deg)'
 					 });  
 				} //Fin de la fonction RotateUpLeft	
-			
+			  RotateUpLeft(130);
+		  }
         }     
+		  
+		//HAUT ET DROITE
         if (e.which == 33) // Vers le haut et la droite
         {
           posX = parseInt($('#pika').css('left'));
           posY = parseInt($('#pika').css('top'));
-          if ((posY > 20) && (posX < 470))
+          if ((posY > 20) && (posX < 470)){
             $('#pika').css('left', posX+30).css('top', posY-30);
-			//On le monte et à droite
-			  RotateUpRight(50);	
+			//On le monte et à droite	
 			  function RotateUpRight(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -171,17 +183,20 @@
 						  '-ms-transform':'rotate('+d+'deg)',
 						  'transform': 'rotate('+d+'deg)'
 					 });  
-				} //Fin de la fonction RotateUpRight	
-        }     
+				} //Fin de la fonction RotateUpRight
+			  RotateUpRight(50);	
+        }    
+		}
+		  
+		// BAS ET GAUCHE
         if (e.which == 35) // Vers le bas et la gauche
         {
           posX = parseInt($('#pika').css('left'));
           posY = parseInt($('#pika').css('top'));
-          if ((posX > 20) && (posY < 230))
+          if ((posX > 20) && (posY < 230)){
             $('#pika').css('left', posX-30).css('top', posY+30);
 			$('#pika').css('left', posX+30).css('top', posY-30);
-			//Bas et la gauche
-			  RotateDownLeft(390);	
+			//Bas et la gauche	
 			  function RotateDownLeft(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -190,16 +205,19 @@
 						  '-ms-transform':'rotate('+d+'deg)',
 						  'transform': 'rotate('+d+'deg)'
 					 });  
+			  RotateDownLeft(390);
 				} //Fin de la fonction RotateDownLeft
-        }     
+        }   
+		}
+		  
+		// BAS ET DROITE  
         if (e.which == 34) // Vers le bas et la droite
         {
           posX = parseInt($('#pika').css('left'));
           posY = parseInt($('#pika').css('top'));
-          if ((posY < 230) && (posX < 470))
+          if ((posY < 230) && (posX < 470)){
             $('#pika').css('left', posX+30).css('top', posY+30);
 		    //Bas et la droite
-			  RotateDownRight(300);	
 			  function RotateDownRight(d) {
 					$("#pika").css({
 						  '-moz-transform':'rotate('+d+'deg)',
@@ -209,9 +227,14 @@
 						  'transform': 'rotate('+d+'deg)'
 					 });  
 				} //Fin de la fonction RotateDownRight
-        }     
-      });
+			  RotateDownRight(300);	
+        }
+		}
+      }); // FIN DU MOUVEMENT DU PERSONNAGE
+		
 
+	  //Affichage éléments aléatoires	
+		
       function afficheElements()
       {
         stopDetection = 0;
@@ -231,7 +254,9 @@
           $('#bon').css('display','none');
         }
       }
-
+      
+	  //Collision entre le personnage qui bouge et les éléments aléatoires	
+		
       function collisions()
       {
         posX = parseInt($('#pika').css('left'));
