@@ -1,2 +1,3 @@
 Little Project created by Lythande.
-Need help :p
+Need help for updates !
+Preview : http://gamespeed-jeuxvideo.com
