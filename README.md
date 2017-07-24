@@ -1,3 +1,3 @@
 Little Project created by Lythande.
 Need help for updates !
-Preview : http://www.gamespeed-jeuxvideo.com/pikachu-jquery/
+Preview : http://www.gs-jeuxvideo.com/pikachu-project/
