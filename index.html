@@ -5,7 +5,7 @@
 	<meta charset ="UTF-8">
 	<title>Mini Jeu Pokémon</title>
 	<link rel="icon" type="image/png" href="pika-3.gif" />
-	
+
 <style type="text/css">
     #jeu{
       width: 960px;
@@ -14,25 +14,25 @@
       background: url('fond.jpg');
     }
     #pika{
-      z-index: 200; 
-      position: absolute; 
-      top: 20px; 
+      z-index: 200;
+      position: absolute;
+      top: 20px;
       left: 70px;
     }
     #bon{
-      z-index: 100; 
-      position: absolute; 
+      z-index: 100;
+      position: absolute;
       display: none;
     }
     #mauvais{
-      z-index: 100; 
-      position: absolute; 
+      z-index: 100;
+      position: absolute;
       display: none;
     }
-	
+
 </style>
 </head>
-	
+
 <body>
 <!-- Mission : diriger un pikachu au pavé numérique et à collecter des éléments qui apparaissent de façon aléatoire sur l'écran. Mais attention, il y a deux types d'éléments : les bons (des pokéballs) et les mauvais (Mewtwo). Les premiers ajoutent 5 points à votre score, alors que les seconds en enlèvent 5. -->
   <div id="jeu">
@@ -43,59 +43,70 @@
   <h1>Pikachu Mini Game !</h1>
 	<cite>Attrapez les pokéballs et évitez Mewtwo ! Pour chaque pokéball vous obtiendrez 5 points, tandis qu'en touchant Mewtwo vous en perdrez 5.</cite>
 	<br /><br/>
-	
+
     <strong>Pokéballs : </strong><span id="info1">0</span> <br/><br/>
 	<strong>Mewto :</strong> <span id="info2">0</span> <br/><br/>
 	<strong>Votre Score :</strong> <span id="info3">0</span> <br/>
-	
+
   <audio preload="auto" id="musiqueFond" autoplay="autoplay" loop="loop"><source src="BabyPleaseDontGo.mp3" type="audio/mp3"><source src="BabyPleaseDontGo.ogg" type="audio/ogg"></audio>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
   <script>
-	
-	//huit blocs de code consacrés au traitement des huit touches du pavé numérique. 
+
+	//huit blocs de code consacrés au traitement des huit touches du pavé numérique.
     $(function() {
-		
+
       var stopDetection = 0;
       $(document).keydown(function(e){
-		
-	  
-	 //On le tourne à droite
-		  function Rotate(d) {
-					$("#pika").css({
-						  '-moz-transform':'rotate('+d+'deg)',
-						  '-webkit-transform':'rotate('+d+'deg)',
-						  '-o-transform':'rotate('+d+'deg)',
-						  '-ms-transform':'rotate('+d+'deg)',
-						  'transform': 'rotate('+d+'deg)'
-					 }); 
-				} //Fin de la fonction Rotate	  
-		  
-	  //DROITE	  
+
+
+	//On le tourne à droite
+	function Rotate(d) {
+			$("#pika").css({
+				  '-moz-transform':'rotate('+d+'deg)',
+				  '-webkit-transform':'rotate('+d+'deg)',
+				  '-o-transform':'rotate('+d+'deg)',
+				  '-ms-transform':'rotate('+d+'deg)',
+				  'transform': 'rotate('+d+'deg)'
+			 });
+		} //Fin de la fonction Rotate
+
+		//On le tourne à droite
+		function ScaleX(d) {
+				$("#pika").css({
+					  '-moz-transform':'scaleX('+d+')',
+					  '-webkit-transform':'scaleX('+d+')',
+					  '-o-transform':'scaleX('+d+')',
+					  '-ms-transform':'scaleX('+d+')',
+					  'transform': 'scaleX('+d+')'
+				 });
+			} //Fin de la fonction Rotate
+
+	  //DROITE
       if (e.which == 39) // Vers la droite
       {
-        posX = parseInt($('#pika').css('left'));	
+        posX = parseInt($('#pika').css('left'));
 		  // avec 700px de largeur c'est 490px
           if (posX < 755){
             $('#pika').css('left', posX+30);
-		  Rotate(180);
+		  			ScaleX(-1); // 180
         }
 	  }
-		
-		// GAUCHE 
+
+		// GAUCHE
         if (e.which == 37) // Vers la gauche
         {
           posX = parseInt($('#pika').css('left'));
 		  // avec 700px de largeur c'est 40px
-          if (posX > 80){
+          if (posX > 40){
             $('#pika').css('left', posX-30);
 			//On le laisse à sa position d'origine
 			  Rotate(0);
         }
 		}
-		
-		// BAS  
+
+		// BAS
         if (e.which == 40) // Vers le bas
         {
           posY = parseInt($('#pika').css('top'));
@@ -103,33 +114,33 @@
           if (posY < 300) {
             $('#pika').css('top', posY+30);
 			  Rotate(240);
-        }   
+        }
 		}
-		
-		// HAUT  
+
+		// HAUT
         if (e.which == 38) // Vers le haut
         {
           posY = parseInt($('#pika').css('top'));
 		  // avec 700px de largeur c'est 20px
           if (posY > 20) {
             $('#pika').css('top', posY-30);
-		      //On le monte	
+		      //On le monte
 			  Rotate(90);
-        } 
+        }
 		}
-		  
+
 		// HAUT ET GAUCHE
         if (e.which == 36) // Vers le haut et la gauche
         {
           posX = parseInt($('#pika').css('left'));
           posY = parseInt($('#pika').css('top'));
-          if ((posY > 20) && (posX > 20)) {
+          if ((posY > 20) && (posX > 40)) {
             $('#pika').css('left', posX-30).css('top', posY-30);
 			//On le monte et à gauche
 			  Rotate(130);
 		  }
-        }     
-		  
+        }
+
 		//HAUT ET DROITE
         if (e.which == 33) // Vers le haut et la droite
         {
@@ -138,10 +149,10 @@
           if ((posY > 20) && (posX < 470)){
             $('#pika').css('left', posX+30).css('top', posY-30);
 			//On le monte et à droite
-			  Rotate(50);	
-        }    
+			  Rotate(50);
+        }
 		}
-		  
+
 		// BAS ET GAUCHE
         if (e.which == 35) // Vers le bas et la gauche
         {
@@ -152,10 +163,10 @@
 			$('#pika').css('left', posX+30).css('top', posY-30);
 			//Bas et la gauche
 			  Rotate(390);
-        }   
+        }
 		}
-		  
-		// BAS ET DROITE  
+
+		// BAS ET DROITE
         if (e.which == 34) // Vers le bas et la droite
         {
           posX = parseInt($('#pika').css('left'));
@@ -163,15 +174,15 @@
           if ((posY < 230) && (posX < 470)){
             $('#pika').css('left', posX+30).css('top', posY+30);
 		    //Bas et la droite
-			  Rotate(300);	
+			  Rotate(300);
         }
 		}
-		
-      }); // FIN DU MOUVEMENT DU PERSONNAGE
-		
 
-	  //Affichage éléments aléatoires	
-		
+      }); // FIN DU MOUVEMENT DU PERSONNAGE
+
+
+	  //Affichage éléments aléatoires
+
       function afficheElements()
       {
         stopDetection = 0;
@@ -191,9 +202,9 @@
           $('#bon').css('display','none');
         }
       }
-      
-	  //Collision entre le personnage qui bouge et les éléments aléatoires	
-		
+
+	  //Collision entre le personnage qui bouge et les éléments aléatoires
+
       function collisions()
       {
         posX = parseInt($('#pika').css('left'));
@@ -204,7 +215,7 @@
           elemX = parseInt($('#mauvais').css('left'));
           elemY = parseInt($('#mauvais').css('top'));
         }
-        else         
+        else
         {
           elemType = 'bon';
           elemX = parseInt($('#bon').css('left'));
@@ -229,13 +240,13 @@
             $('#info3').text(score);
             $('#mauvais').css('display', 'none');
           }
-        }                         
+        }
       }
-       
+
       setInterval(afficheElements, 2000);
       setInterval(collisions, 200);
     });
   </script>
 </body>
-	
+
 </html>
